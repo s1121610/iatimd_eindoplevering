@@ -40,16 +40,20 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     },100);
         }
-        //FRAGMENTS:
+        //-----------FRAGMENTS:--------------------
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         TextFragment fragment = new TextFragment();
         fragmentTransaction.add(R.id.sloganFragment,fragment);//Voeg de transactie toe
+
+        //Button Fragment:
+        ButtonFragment buttonFragment = new ButtonFragment();
+        fragmentTransaction.add(R.id.TerugButtonFragmentContainer, buttonFragment);
+
         fragmentTransaction.commit();
 
-
-        //BUTTONS:
+        //--------------BUTTONS---------------------:
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -57,23 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
-
-        terugButton = findViewById(R.id.buttonTerug);
-
-        terugButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openHomeActivity();
-            }
-        });
-
-
-
-    }
-
-    public void openHomeActivity(){
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
     @Override
