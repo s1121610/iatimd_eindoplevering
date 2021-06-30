@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openHomeActivity(){
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, ClothesActivity.class);
         startActivity(intent);
     }
 

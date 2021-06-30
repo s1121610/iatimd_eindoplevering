@@ -43,7 +43,7 @@ public class ClothesActivity extends AppCompatActivity {
         kledingstukken[2] = new Kledingstuk( "Donkergroene hoodie", "hoodie", "winter","vrije tijd","none",3);
         kledingstukken[3] = new Kledingstuk( "Zwarte spijkerbroek", "lange broek", "all", "werk", "none", 4);
         kledingstukken[4] = new Kledingstuk( "Superdry groen t-shirt", "t-shirt", "zomer", "vrije tijd", "none", 5);
-        //kledingstukken[5] = new Kledingstuk( "Witte blousse", "blousse", "all", "speciale gelegenheden", "none", 6);
+        kledingstukken[5] = new Kledingstuk( "Witte blousse", "blousse", "all", "speciale gelegenheden", "none", 6);
 
 
         // RequestQueue queue = Volley.newRequestQueue(this);
@@ -57,12 +57,12 @@ public class ClothesActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("Werkt!", response.toString());
-                        try {
-                            kledingstukken[5] = new Kledingstuk(response.get("name").toString(), response.get("spiecies").toString(), response.get("season").toString(), response.get("occasion").toString(), response.get("image").toString(), 6);
-                            recyclerViewAdapter.notifyDataSetChanged();//De adapter laten weten dat de data is veranderd
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            kledingstukken[5] = new Kledingstuk(response.get("name").toString(), response.get("spiecies").toString(), response.get("season").toString(), response.get("occasion").toString(), response.get("image").toString(), 6);
+//                            recyclerViewAdapter.notifyDataSetChanged();//De adapter laten weten dat de data is veranderd
+//                        }catch (JSONException e){
+//                            e.printStackTrace();
+//                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -80,6 +80,12 @@ public class ClothesActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());//Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "KledingstukDB").allowMainThreadQueries().fallbackToDestructiveMigration().build(); //allowMainThreadQueries WEGHALEN BIJ EINDOPLEVERING!!! + fallbackto.. = functie die db verwijdert als de db versie opgehoogd wordt
 
         new Thread(new InsertKledingstukTask(db, kledingstukken[0])).start();
+        new Thread(new InsertKledingstukTask(db, kledingstukken[1])).start();
+        new Thread(new InsertKledingstukTask(db, kledingstukken[2])).start();
+        new Thread(new InsertKledingstukTask(db, kledingstukken[3])).start();
+        new Thread(new InsertKledingstukTask(db, kledingstukken[4])).start();
+        new Thread(new InsertKledingstukTask(db, kledingstukken[5])).start();
+
         //new Thread(new GetKledingstukTask(db)).start();
     }
 }
