@@ -8,17 +8,14 @@ public class Kledingstuk {
     private String image;
     private int uuid;
 
-//    public kledingstuk (String name, String spiecies, String season, String occasion,String image, int uuid){
-//        this.name = name;
-//        this.spiecies = spiecies;
-//        this.season = season;
-//        this.occasion = occasion;
-//        this.image = image;
-//        this.uuid = uuid;
-//
-//        Kledingstuk kledingstuk = new Kledingstuk();
-//        return Kledingstuk;
-//    }
+    public Kledingstuk (String name, String spiecies, String season, String occasion,String image, int uuid){
+        this.name = name;
+        this.spiecies = spiecies;
+        this.season = season;
+        this.occasion = occasion;
+        this.image = image;
+        this.uuid = uuid;
+    }
 
     public String getName(){
         return this.name;

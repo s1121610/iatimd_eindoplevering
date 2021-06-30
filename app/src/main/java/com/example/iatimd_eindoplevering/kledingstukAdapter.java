@@ -1,5 +1,6 @@
 package com.example.iatimd_eindoplevering;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class kledingstukAdapter extends RecyclerView.Adapter<kledingstukAdapter.KledingstukViewHolder>{
-//    private Kledingstuk[] kledingstukken;
-    private String[] clothes;
+    private Kledingstuk[] kledingstukken;
+    //private String[] clothes;
 
-    public kledingstukAdapter(String[] clothes){
-        this.clothes = clothes;
+    public kledingstukAdapter(Kledingstuk[] kledingstukken){
+        this.kledingstukken = kledingstukken;
     }
 
     public static class KledingstukViewHolder extends RecyclerView.ViewHolder{
@@ -30,17 +31,17 @@ public class kledingstukAdapter extends RecyclerView.Adapter<kledingstukAdapter.
     @Override
     public KledingstukViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.clothe_card, parent, false); //Maak een kaartje aan met tekst erin, op basis van de layout
-        KledingstukViewHolder kledingstukViewHolder = new KledingstukViewHolder(v); //Verantwoordelijk voor het inserten van data
-        return kledingstukViewHolder;
+        KledingstukViewHolder vh = new KledingstukViewHolder(v); //Verantwoordelijk voor het inserten van data
+        return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull kledingstukAdapter.KledingstukViewHolder holder, int position) {
-        holder.textView.setText(clothes[position]); //Vul de titel van een kaartje op met een waarde uit de array
+        holder.textView.setText(kledingstukken[position].getName()); //Vul de titel van een kaartje op met een waarde uit de array
     }
 
     @Override
     public int getItemCount() {
-        return clothes.length; //retouneer de lengte van de array
+        return kledingstukken.length; //retouneer de lengte van de array
     }
 }
