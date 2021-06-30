@@ -47,7 +47,7 @@ public class ButtonFragment extends Fragment {
     }
 
     public void openHomeActivity() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class); //Gebruik getActivity() als je vanaf een fragment een activity wilt openen.
+        Intent intent = new Intent(getActivity(), ClothesActivity.class); //Gebruik getActivity() als je vanaf een fragment een activity wilt openen.
         startActivity(intent);
     }
 }
