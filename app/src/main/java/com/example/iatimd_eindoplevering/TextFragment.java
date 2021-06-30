@@ -27,4 +27,8 @@ public class TextFragment extends Fragment{
         return v;
     }
 
+    public void setText(String text){
+        textView.setText(text);
+    }
+
 }

@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
@@ -20,10 +21,12 @@ import android.widget.ImageView;
 
 import org.xml.sax.helpers.XMLReaderAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ButtonFragment.OnButtonClickListener{
     ImageView clothe_image;
     Button button;
     Button terugButton;
+    TextFragment fragment;
+    int order = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        TextFragment fragment = new TextFragment();
-        fragmentTransaction.add(R.id.sloganFragment,fragment);//Voeg de transactie toe
+        fragment = new TextFragment();
+        fragmentTransaction.add(R.id.sloganFragment, fragment);//Voeg de transactie toe
 
         //Button Fragment:
         ButtonFragment buttonFragment = new ButtonFragment();
@@ -61,6 +64,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
+    }
+
+    @Override
+    public void onButtonClicked(){
+        Log.d("buttonVanuitMain", "Ik ben geklikt!"); //Geef een actie mee als de button uit ButtonFragment wordt geklikt.
+        if (order == 0){
+            Log.d("clicked" , "0");
+            fragment.setText(getResources().getString(R.string.text));
+            order = 1;
+        }else{
+            Log.d("clicked" , "1");
+            fragment.setText("Dit is de tweede keer dat je hierop klikt");
+            fragment.setText("");
+            order = 0;
+        }
     }
 
     @Override
