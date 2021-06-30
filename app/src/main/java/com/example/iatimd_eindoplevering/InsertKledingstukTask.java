@@ -16,7 +16,7 @@ public class InsertKledingstukTask implements Runnable{
     @Override
     public void run(){
         db.kledingstukDAO().InsertKledingstuk(this.kledingstuk);
-        String name = db.kledingstukDAO().getAll().get(0).getName();
+        String name = db.kledingstukDAO().getAll().get(1).getName();
         Log.d("dbtest", name); //log statement
     }
 

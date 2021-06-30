@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
@@ -18,10 +21,12 @@ import android.widget.ImageView;
 
 import org.xml.sax.helpers.XMLReaderAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ButtonFragment.OnButtonClickListener{
     ImageView clothe_image;
     Button button;
     Button terugButton;
+    TextFragment fragment;
+    int order = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,20 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     },100);
         }
+        //-----------FRAGMENTS:--------------------
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        fragment = new TextFragment();
+        fragmentTransaction.add(R.id.sloganFragment, fragment);//Voeg de transactie toe
+
+        //Button Fragment:
+        ButtonFragment buttonFragment = new ButtonFragment();
+        fragmentTransaction.add(R.id.TerugButtonFragmentContainer, buttonFragment);
+
+        fragmentTransaction.commit();
+
+        //--------------BUTTONS---------------------:
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -46,23 +64,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
-
-        terugButton = findViewById(R.id.buttonTerug);
-
-        terugButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openHomeActivity();
-            }
-        });
-
-
-
     }
 
-    public void openHomeActivity(){
-        Intent intent = new Intent(this, ClothesActivity.class);
-        startActivity(intent);
+    @Override
+    public void onButtonClicked(){
+        Log.d("buttonVanuitMain", "Ik ben geklikt!"); //Geef een actie mee als de button uit ButtonFragment wordt geklikt.
+        if (order == 0){
+            Log.d("clicked" , "0");
+            fragment.setText(getResources().getString(R.string.text));
+            order = 1;
+        }else{
+            Log.d("clicked" , "1");
+            fragment.setText("Dit is de tweede keer dat je hierop klikt");
+            fragment.setText("");
+            order = 0;
+        }
     }
 
     @Override
