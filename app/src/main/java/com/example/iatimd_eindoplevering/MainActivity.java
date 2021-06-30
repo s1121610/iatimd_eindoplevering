@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
@@ -38,7 +40,16 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     },100);
         }
+        //FRAGMENTS:
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        TextFragment fragment = new TextFragment();
+        fragmentTransaction.add(R.id.sloganFragment,fragment);//Voeg de transactie toe
+        fragmentTransaction.commit();
+
+
+        //BUTTONS:
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
