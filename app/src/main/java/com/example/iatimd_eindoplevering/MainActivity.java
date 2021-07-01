@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements ButtonFragment.On
     ImageView clothe_image;
     Button button;
     Button terugButton;
+    Button registerButton;
     TextFragment fragment;
     int order = 0;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements ButtonFragment.On
 
         clothe_image = findViewById(R.id.clothe_image);
         button = findViewById(R.id.button);
+        registerButton = findViewById(R.id.toRegister);
 
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
@@ -62,6 +64,14 @@ public class MainActivity extends AppCompatActivity implements ButtonFragment.On
             public void onClick(View view){
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        //Button om vanuit de startpagina naar het registreerform te gaan
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
     }
