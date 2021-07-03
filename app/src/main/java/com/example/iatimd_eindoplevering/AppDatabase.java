@@ -10,7 +10,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-@Database(entities = {Kledingstuk.class}, version = 3)
+@Database(entities = {Kledingstuk.class}, version = 6)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract KledingstukDAO kledingstukDAO();
 

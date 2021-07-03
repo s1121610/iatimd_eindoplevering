@@ -2,6 +2,8 @@ package com.example.iatimd_eindoplevering;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,13 +19,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import java.io.FileInputStream;
+import java.security.Key;
+import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 public class LoginActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button login;
+    SharedPreferences sharedPreferences;
+
+    private static final String SHARED_PREF_TOKEN = "token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
         login = findViewById(R.id.login_button);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_TOKEN, MODE_PRIVATE);
+
+
 
         RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         final String URL = "http://protected-cliffs-08967.herokuapp.com/api/login";
@@ -46,7 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this,"U bent ingelogd!",Toast.LENGTH_LONG).show();
+                                    Log.d("key", response);
+                                    //TODO: HIER TOKEN OPSLAAN!
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(SHARED_PREF_TOKEN, response);
+                                    editor.apply();
+                                    Intent intent = new Intent(LoginActivity.this, ClothesActivity.class);
+                                    startActivity(intent);
                                 }
                             },
                             new Response.ErrorListener() {
