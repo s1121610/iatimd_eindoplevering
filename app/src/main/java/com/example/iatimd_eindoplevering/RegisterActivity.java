@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                             params.put("email", email.getText().toString());
                             params.put("password", password.getText().toString());
                             params.put("password_confirmation", repeatPassword.getText().toString());
-                            params.put("device_name", "SamsungA71_max");
+                            params.put("device_name", email.getText().toString());
                             Log.d("params", String.valueOf(params));
                             return params;
                         }
