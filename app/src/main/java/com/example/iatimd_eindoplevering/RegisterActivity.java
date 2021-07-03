@@ -2,6 +2,7 @@ package com.example.iatimd_eindoplevering;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText password;
     EditText repeatPassword;
     Button register;
+    Button toLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.register_Password);
         repeatPassword = findViewById(R.id.register_HerhaalPassword);
         register = findViewById(R.id.register_button);
+        toLogin = findViewById(R.id.naarLogin_button);
 
         RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         final String URL = "http://protected-cliffs-08967.herokuapp.com/api/registration";
-
-
 
         register.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -82,6 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
                 }else{
                     Log.d("form validator", "false");
                 }
+            }
+        });
+
+        toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
     }
