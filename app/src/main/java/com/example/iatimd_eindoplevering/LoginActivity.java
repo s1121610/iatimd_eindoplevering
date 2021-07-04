@@ -60,9 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    Toast.makeText(LoginActivity.this,"U bent ingelogd!",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this,"U bent ingelogd!",Toast.LENGTH_SHORT).show();
                                     Log.d("key", response);
-                                    //TODO: HIER TOKEN OPSLAAN!
+                                    //HIER TOKEN OPSLAAN:
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(SHARED_PREF_TOKEN, response);
                                     editor.apply();
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this,"Uw gebruikersnaam en/of wachtwoord is onjuist.",Toast.LENGTH_LONG).show();
                                 }
                             }){
                         @Override
@@ -99,6 +99,11 @@ public class LoginActivity extends AppCompatActivity {
         return TextUtils.isEmpty(str);
     }
 
+    boolean isEmail(EditText text) {
+        CharSequence email = text.getText().toString();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
     boolean checkDataEntered(){
         boolean valid = false;
         if (isEmpty(email)){
@@ -107,6 +112,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (isEmpty(password)){
             password.setError("Vul uw wachtwoord in.");
+            valid = false;
+        }
+        if (!isEmail(email)){
+            email.setError("Dit is geen geldig email adres");
             valid = false;
         }
         else{
