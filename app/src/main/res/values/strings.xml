@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Mijn klerenzooi</string>
     <string name="text">Organiseer uw kleding!</string>
+    <string-array name="occasions">
+        <item>vrijeTijd</item>
+        <item>vakantie</item>
+        <item>uitgaan</item>
+        <item>werken</item>
+    </string-array>
 </resources>

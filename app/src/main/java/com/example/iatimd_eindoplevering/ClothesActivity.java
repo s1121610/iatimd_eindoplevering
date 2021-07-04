@@ -27,6 +27,8 @@ public class ClothesActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     int resLength;
 
+    private static String occasion = OccasionActivity.getOccasion();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class ClothesActivity extends AppCompatActivity {
 
         // RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-        final String URL = "https://protected-cliffs-08967.herokuapp.com/api/clothes";
+        final String URL = "https://protected-cliffs-08967.herokuapp.com/api/clothes/" + occasion;
 
         //Haal data op uit de API:
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,

@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Iatimd_eindoplevering"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OccasionActivity"></activity>
+        <activity android:name=".CreateNewClothesActivity"></activity>
+        <activity android:name=".OccasionActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ClothesActivity" />

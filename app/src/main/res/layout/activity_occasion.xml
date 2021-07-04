@@ -11,13 +11,25 @@
         android:id="@+id/textView6"
         android:layout_width="176dp"
         android:layout_height="47dp"
-        android:text="Wat ga je doen vandaag?"
+        android:text="Hoi! Wat ga je doen vandaag?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="175dp"
+        android:layout_height="25dp"
+        android:text="Nieuwe kleding gekocht?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781" />
 
     <Button
         android:id="@+id/buttonWerken"
@@ -65,4 +77,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.675" />
+
+    <Button
+        android:id="@+id/buttonKledingstukToevoegen"
+        android:layout_width="196dp"
+        android:layout_height="82dp"
+        android:text="Kledingstuk toevoegen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
