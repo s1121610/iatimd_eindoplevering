@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(SHARED_PREF_TOKEN, response);
                                     editor.apply();
-                                    Intent intent = new Intent(LoginActivity.this, ClothesActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, OccasionActivity.class);
                                     startActivity(intent);
                                 }
                             },
@@ -84,7 +84,6 @@ public class LoginActivity extends AppCompatActivity {
                             params.put("device_name", email.getText().toString());
                             return params;
                         }
-
                     };
                     queue.add(stringRequest);
                 }else{
