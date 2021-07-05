@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 
@@ -15,6 +16,7 @@ public class OccasionActivity extends AppCompatActivity {
     Button vakantie;
     Button uitgaan;
     Button toevoegen;
+    Button uitloggen;
 
     private static String occasion;
 
@@ -32,6 +34,7 @@ public class OccasionActivity extends AppCompatActivity {
         vakantie = findViewById(R.id.buttonVakantie);
         uitgaan = findViewById(R.id.buttonUitgaan);
         toevoegen = findViewById(R.id.buttonKledingstukToevoegen);
+        uitloggen = findViewById(R.id.buttonUitloggen);
 
         werken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +75,18 @@ public class OccasionActivity extends AppCompatActivity {
             }
         });
 
-        //Het weer ophalen
-//        GPSTracker gpsTracker = new GPSTracker(this);
-//
-//        Call<WeatherPOJO> listCall = service.getWeather(gpsTracker.getLatitude(),gpsTracker.getLongitude(),"metric",passwordString);
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://api.github.com/")
-//                .build();
-//
-//        GitHubService service = retrofit.create(GitHubService.class);
+        uitloggen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Verwijder de token:
+                deleteSharedPreferences("SHARED_PREF_TOKEN");
+
+                //Geef een melding dat de gebruiker is uitgelogd:
+                Toast.makeText(OccasionActivity.this,"U bent uitgelogd",Toast.LENGTH_SHORT).show();
+
+                //Ga terug naar de login pagina:
+                startActivity(new Intent(OccasionActivity.this, LoginActivity.class));
+            }
+        });
     }
 }

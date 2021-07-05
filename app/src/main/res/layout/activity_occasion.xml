@@ -44,6 +44,18 @@
         app:layout_constraintVertical_bias="0.206" />
 
     <Button
+        android:id="@+id/buttonUitloggen"
+        android:layout_width="138dp"
+        android:layout_height="39dp"
+        android:text="Uitloggen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.927"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
         android:id="@+id/buttonVrijeTijd"
         android:layout_width="195dp"
         android:layout_height="64dp"

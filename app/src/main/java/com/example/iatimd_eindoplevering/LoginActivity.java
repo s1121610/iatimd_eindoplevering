@@ -34,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     SharedPreferences sharedPreferences;
 
-    private static final String SHARED_PREF_TOKEN = "token";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
         login = findViewById(R.id.login_button);
-        sharedPreferences = getSharedPreferences(SHARED_PREF_TOKEN, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("SHARED_PREF_TOKEN", MODE_PRIVATE);
 
 
 
@@ -64,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Log.d("key", response);
                                     //HIER TOKEN OPSLAAN:
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString(SHARED_PREF_TOKEN, response);
+                                    editor.putString("SHARED_PREF_TOKEN", response);
                                     editor.apply();
                                     Intent intent = new Intent(LoginActivity.this, OccasionActivity.class);
                                     startActivity(intent);
