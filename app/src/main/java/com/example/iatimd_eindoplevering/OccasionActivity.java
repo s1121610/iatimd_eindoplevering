@@ -16,7 +16,7 @@ public class OccasionActivity extends AppCompatActivity {
 
     private static String occasion;
 
-    public static String getOccasion(){
+    public static final String getOccasion(){
         return occasion;
     }
 

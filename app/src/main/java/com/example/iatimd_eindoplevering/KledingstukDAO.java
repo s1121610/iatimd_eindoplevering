@@ -7,8 +7,14 @@ import androidx.room.Query;
 
 import java.util.List;
 
+
 @Dao
-public interface KledingstukDAO {
+public interface KledingstukDAO{
+    String occasion = OccasionActivity.getOccasion();
+
+    @Query("SELECT COUNT(*) FROM kledingstuk")
+    int getDataCount();
+
     @Query("SELECT * FROM kledingstuk")
     List<Kledingstuk> getAll();
 
