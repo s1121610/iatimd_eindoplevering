@@ -41,7 +41,7 @@ public class CreateNewClothesActivity extends AppCompatActivity {
                 String inputName = name.getText().toString();
                 String inputSpiecies = spiecies.getText().toString();
                 String inputSeason = season.getText().toString();
-                String inputOccasion = occasion.getTransitionName().toString();
+                String inputOccasion = occasion.getSelectedItem().toString();
 
                 //Zet de data uit het form in een array van kledingstuk:
                 Kledingstuk[] kledingstukken = new Kledingstuk[1];

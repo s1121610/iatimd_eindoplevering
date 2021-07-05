@@ -20,10 +20,12 @@ public class kledingstukAdapter extends RecyclerView.Adapter<kledingstukAdapter.
 
     public static class KledingstukViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
+        public TextView textViewSoort;
 
         public KledingstukViewHolder(View v){
             super(v);
             textView = v.findViewById(R.id.titel);
+            textViewSoort = v.findViewById(R.id.cardSoort);
         }
     }
 
@@ -31,6 +33,7 @@ public class kledingstukAdapter extends RecyclerView.Adapter<kledingstukAdapter.
     @Override
     public KledingstukViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.clothe_card, parent, false); //Maak een kaartje aan met tekst erin, op basis van de layout
+
         KledingstukViewHolder vh = new KledingstukViewHolder(v); //Verantwoordelijk voor het inserten van data
         return vh;
     }
@@ -38,6 +41,7 @@ public class kledingstukAdapter extends RecyclerView.Adapter<kledingstukAdapter.
     @Override
     public void onBindViewHolder(@NonNull kledingstukAdapter.KledingstukViewHolder holder, int position) {
         holder.textView.setText(kledingstukken[position].getName()); //Vul de titel van een kaartje op met een waarde uit de array
+        holder.textViewSoort.setText(kledingstukken[position].getName()); //Vul de titel van een kaartje op met een waarde uit de array
     }
 
     @Override

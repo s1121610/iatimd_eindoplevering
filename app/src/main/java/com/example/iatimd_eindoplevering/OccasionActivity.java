@@ -20,9 +20,6 @@ public class OccasionActivity extends AppCompatActivity {
 
     private static String occasion;
 
-    public static final String getOccasion(){
-        return occasion;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,4 +86,9 @@ public class OccasionActivity extends AppCompatActivity {
             }
         });
     }
+
+    public static String getOccasion(){
+        return occasion;
+    }
+
 }

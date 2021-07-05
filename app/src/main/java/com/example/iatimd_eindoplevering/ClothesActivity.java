@@ -20,6 +20,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class ClothesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -28,6 +30,7 @@ public class ClothesActivity extends AppCompatActivity {
     int resLength;
 
     private static String occasion = OccasionActivity.getOccasion();
+    private static String selectedOccasion;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,17 +41,19 @@ public class ClothesActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.hasFixedSize(); //Betere perf. bij stabiele list length
+        //recyclerView.hasFixedSize(); //Betere perf. bij stabiele list length
+
+        Random rand = new Random();
+        int upperbound = 9999;
+        int uuid_random = rand.nextInt(upperbound);
+
         AppDatabase db = AppDatabase.getInstance(getApplicationContext());//functie die db verwijdert als de db versie opgehoogd wordt
 
         Kledingstuk[] kledingstukken = new Kledingstuk[db.kledingstukDAO().getDataCount()];
-        kledingstukken[0] = new Kledingstuk( "Blauwe korte broek", "korte broek", "zomer", "vakantie","none", 1);
-        kledingstukken[1] = new Kledingstuk( "wit t-shirt",  "t-shirt",  "zomer", "vrije tijd", "none", 2);
-        kledingstukken[2] = new Kledingstuk( "Donkergroene hoodie", "hoodie", "winter","vrije tijd","none",3);
-        kledingstukken[3] = new Kledingstuk( "Zwarte spijkerbroek", "lange broek", "all", "werk", "none", 4);
-        kledingstukken[4] = new Kledingstuk( "Superdry groen t-shirt", "t-shirt", "zomer", "vrije tijd", "none", 5);
-        kledingstukken[5] = new Kledingstuk( "Witte blousse", "blousse", "all", "speciale gelegenheden", "none", 6);
-        new Thread(new GetKledingstukTask(db)).start();//Haal kledingstukken op
+
+        for(int i = 0; i < db.kledingstukDAO().getDataCount(); i++){
+            kledingstukken[i] = new Kledingstuk( db.kledingstukDAO().getAll().get(i).getName(), db.kledingstukDAO().getAll().get(i).getSpiecies(), db.kledingstukDAO().getAll().get(i).getSeason(), db.kledingstukDAO().getAll().get(i).getOccasion(),"none", uuid_random);
+        }
 
         recyclerViewAdapter = new kledingstukAdapter(kledingstukken);
         recyclerView.setAdapter(recyclerViewAdapter);

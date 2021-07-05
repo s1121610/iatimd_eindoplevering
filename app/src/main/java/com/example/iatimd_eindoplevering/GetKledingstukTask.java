@@ -11,18 +11,16 @@ public class GetKledingstukTask implements Runnable{
 
     @Override
     public void run(){
-        //for(int i = 0; i < db.kledingstukDAO().getDataCount(); i++){
-            String name = db.kledingstukDAO().getAll().get(1).getName();
-            String spiecies = db.kledingstukDAO().getAll().get(1).getName();
-            String season = db.kledingstukDAO().getAll().get(1).getSeason();
-            String occasion = db.kledingstukDAO().getAll().get(1).getSeason();
+        Kledingstuk[] kledingstukken = new Kledingstuk[db.kledingstukDAO().getDataCount()];
 
-        //}
+//        for(int i = 0; i < db.kledingstukDAO().getDataCount(); i++){
+//            kledingstukken[i] = new Kledingstuk( db.kledingstukDAO().getAll().get(i).getName(), db.kledingstukDAO().getAll().get(i).getName(), db.kledingstukDAO().getAll().get(i).getName(), db.kledingstukDAO().getAll().get(i).getSeason(),"none", 1);
+//            String name = db.kledingstukDAO().getAll().get(i).getName();
+//            String spiecies = db.kledingstukDAO().getAll().get(i).getName();
+//            String season = db.kledingstukDAO().getAll().get(i).getSeason();
+//            String occasion = db.kledingstukDAO().getAll().get(i).getSeason();
+//        }
         Log.d("dbLenght", String.valueOf(db.kledingstukDAO().getDataCount()));
-        Log.d("dbtest", name);
-        Log.d("dbtest", spiecies);
-        Log.d("dbtest", season);
-        Log.d("dbtest", occasion);
 
     }
 }
